@@ -4,14 +4,14 @@ from Tkinter import *
 import time
 import Adafruit_MCP3008
 
+#Define running trigger to start/pause
+running = True
 #List to store values
 my_list = []
 # Front lables to display
 flabels = []
 # Answer lables
 alabels = []
-# Dummy list generator incrementor
-
 
 #initialize MCP
 
@@ -30,10 +30,23 @@ def start_app():
     """
     Start the application when start button pressed
     """
+    global running
+    running = True
     #Disable start button after presee
     start_button.config(state=DISABLED)
+    pause_button.config(state=NORMAL)
     print "Starting app!"
     update_values()
+
+def pause_app():
+    """ 
+    Pause
+    """
+    print "Pausing "
+    global running
+    running = False
+    start_button.config(state=NORMAL)
+    pause_button.config(state=DISABLED)
 
 def stop_app():
     """
@@ -47,24 +60,16 @@ def update_values():
     """
     Helper function to trigger label values after reading list
     """
-    my_list = dummy_list_gen()
+    my_list = read_adc_values()
     update_label_values(my_list)
     # Repeat the function after 1s (no need time.sleep)
-    master.after(1000, update_values)
+    if running:
+        master.after(1000, update_values)
 
-
-
-def dummy_list_gen():
+def read_adc_values():
     """
-    Dummy List generator
+    Return values from adc
     """
-    #global i
-    #my_list = [3,2,3,4,5]
-    #my_list = [i] * 5
-    #print my_list
-    #i += 1
-    #return my_list
-
     # Read all the ADC channel values in a list.
     values = [0]*5
     volt = [0]*5
@@ -93,13 +98,6 @@ def update_label_values(my_list):
     """
     Update the answer lables values with list
     """
-#    for label in alabels:
-#        for i in range(5):
-#           label.config(text=str(my_list[i]) + "KOhm")
-#	   print(str(my_list[i]) + "KOhm")
-        #update idletasks finish all tk loops of current execution
-#	master.update_idletasks()
-
     for j in range(5):
         alabels[j].config(text=str(my_list[j])+' KOhm')
     master.update_idletasks()
@@ -154,6 +152,10 @@ for label in alabels:
 start_button = Button(master, text="Start",height=2, width=10, command=start_app)
 start_button.pack()
 
+#Create pause button and call pause_app function
+pause_button = Button(master, text="Pause",height=2, width=10, command=pause_app)
+pause_button.pack()
+
 #Create Stop button to exit program
 stop_button = Button(master, text="Stop",height=2, width=10, command=stop_app)
 stop_button.pack()
@@ -161,6 +163,7 @@ stop_button.pack()
 #Add buttons to canvas
 w.create_window(70, 170, window=start_button)
 w.create_window(190, 170, window=stop_button)
+w.create_window(310, 170, window=pause_button)
 
 #main loop
 master.mainloop()
