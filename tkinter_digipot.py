@@ -176,15 +176,15 @@ class MyPoti(Tkinter.Tk):
         print(level)
         b = 0
 
-        if int(pot) == 1:
+        if int(pot) == 0:
             b = "0001" "0001" "{0:08b}".format(level)
-        if int(pot) == 2:
+        if int(pot) == 1:
             b = "0001" "0001" "{0:08b}" '{0:016b}'.format(level)
-        if int(pot) == 3:
+        if int(pot) == 2:
             b = "0001" "0001" "{0:08b}" '{0:032b}'.format(level)
-        if int(pot) == 4:
+        if int(pot) == 3:
             b = "0001" "0001" "{0:08b}" '{0:048b}'.format(level)
-        if int(pot) == 5:
+        if int(pot) == 4:
             b = "0001" "0001" "{0:08b}" '{0:064b}'.format(level)
 
         print b 
