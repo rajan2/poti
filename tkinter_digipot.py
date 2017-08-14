@@ -171,8 +171,13 @@ class MyPoti(Tkinter.Tk):
         #lev = float((rw * byte) / local_pot)
         #level =round(lev)
         #level = int(level)
-        level = int(res) - int(local_res)
+        #level = int(res) - int(local_res)
+        if float(res):
+            level = float(res) - int(local_res)
+        else:
+            level = int(res) - int(local_res)
         level = (level * byte) / local_pot
+		level = int(level)
         print(level)
         b = 0
 
