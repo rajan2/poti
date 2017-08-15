@@ -1,4 +1,5 @@
 import Tkinter
+import tkMessageBox
 from Tkinter import Tk, Label, Button, Canvas, Entry
 import sys
 import time
