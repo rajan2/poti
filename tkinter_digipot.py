@@ -42,7 +42,7 @@ class MyPoti(Tkinter.Tk):
         self.alblx = 380
         self.albly = 40
 
-		#Dummy list
+		#Dummy list1
         self.my_list = []
 	
 		#Text to set on front lables
