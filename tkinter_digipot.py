@@ -197,8 +197,8 @@ class MyPoti(Tkinter.Tk):
         pot = self.entry_pot.get()
         ###if pot < 0 or pot > 4 : ###
         if int(pot) < 0 or int(pot) > 4 :
-	        tkMessageBox.showerror("wrong input","wrong input, pot selection must be 0-4, current selection: %s" % pot)
-            return 
+			tkMessageBox.showerror("wrong input","wrong input, pot selection must be 0-4, current selection: %s" % pot)
+			return 
         res = self.entry_res.get()
 
 		
