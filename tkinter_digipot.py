@@ -195,6 +195,11 @@ class MyPoti(Tkinter.Tk):
 		#Read input value given for pot selection text field
         pot = self.entry_pot.get()
         #if pot < 0 or pot > 4 :
+        if int(pot) < 0 or int(pot) > 4 :
+	        tkMessageBox.showerror("wrong input","wrong input, pot selection must be 0-4, current selection: %s" % pot)
+            return 
+        res = self.entry_res.get()
+
 		
 		#Read input value given for  resistence text field
         res = self.entry_res.get()
